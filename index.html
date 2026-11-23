@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#173f35">
+  <meta name="description" content="الطيبات لايف: متابعة غذائية ووزن وخطة أسبوعية">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <title>الطيبات | Tayyibat Life</title>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <div class="leaf">🌿</div>
+    <div><h1>الطيبات</h1><p>TAYYIBAT LIFE · النسخة الشخصية</p></div>
+  </div>
+  <div class="profile-pill">هدفك: 95 ← 85 كجم</div>
+</header>
+
+<main>
+  <section class="hero">
+    <p class="eyebrow">لوحة المتابعة الشخصية</p>
+    <h2>خطوة صغيرة كل يوم</h2>
+    <p>برنامج غذائي متوازن، دليل أطعمة مرجعي، وسجل لمتابعة تقدمك.</p>
+    <div class="metrics">
+      <div><strong id="latestWeight">95</strong><span>الوزن الحالي · كجم</span></div>
+      <div><strong>85</strong><span>الهدف الأول · كجم</span></div>
+      <div><strong>178</strong><span>الطول · سم</span></div>
+    </div>
+  </section>
+
+  <nav class="tabs" aria-label="أقسام التطبيق">
+    <button class="tab active" data-tab="home">الرئيسية</button>
+    <button class="tab" data-tab="foods">دليل الأطعمة</button>
+    <button class="tab" data-tab="meals">الوجبات</button>
+    <button class="tab" data-tab="progress">متابعتي</button>
+  </nav>
+
+  <section id="home" class="panel active">
+    <div class="section-head"><h2>مهام اليوم</h2><span id="todayLabel" class="muted"></span></div>
+    <div class="check-card">
+      <label><input type="checkbox" data-task="breakfast"> تناول الإفطار</label>
+      <label><input type="checkbox" data-task="lunch"> تناول الغداء</label>
+      <label><input type="checkbox" data-task="snack"> الوجبة الخفيفة</label>
+      <label><input type="checkbox" data-task="dinner"> تناول العشاء</label>
+      <label><input type="checkbox" data-task="water"> متابعة شرب الماء</label>
+      <label><input type="checkbox" data-task="walk"> المشي أو الحركة</label>
+      <div class="progress-track"><div id="dailyProgress"></div></div>
+      <p id="progressText" class="muted">0 من 6 مهام مكتملة</p>
+    </div>
+    <div class="notice">
+      <strong>تنبيه غذائي</strong>
+      <p>تصنيفات نظام الطيبات في هذا التطبيق منقولة من قوائم إلكترونية غير رسمية وقد تختلف. لا توقف دواءً ولا تستبعد مجموعات غذائية كاملة اعتماداً على هذه القوائم وحدها.</p>
+    </div>
+    <div class="card">
+      <h3>ملخص إعداداتك</h3>
+      <div class="summary-grid">
+        <span>العمر</span><b>45 سنة</b>
+        <span>الجنس</span><b>ذكر</b>
+        <span>النشاط</span><b>قليل</b>
+        <span>الهدف</span><b>خفض الوزن</b>
+        <span>السعرات التقديرية الأولية</span><b>1,750–1,850 يومياً</b>
+      </div>
+      <p class="muted small">هذه أرقام تقديرية أولية وليست وصفة طبية. راقب الوزن والطاقة والجوع وعدّل الخطة عند الحاجة.</p>
+    </div>
+  </section>
+
+  <section id="foods" class="panel">
+    <h2>دليل الأطعمة</h2>
+    <p class="muted">تصنيف مرجعي من قوائم منشورة غير رسمية؛ ليس اعتماداً طبياً أو قائمة رسمية موحدة.</p>
+    <input id="foodSearch" class="field" type="search" placeholder="ابحث عن طعام أو مجموعة...">
+    <div class="filters" role="group" aria-label="تصفية الأطعمة">
+      <button class="filter active" data-filter="الكل">الكل</button>
+      <button class="filter" data-filter="مسموح منسوب">مسموح منسوب</button>
+      <button class="filter" data-filter="ممنوع منسوب">ممنوع منسوب</button>
+      <button class="filter" data-filter="مشروط منسوب">مشروط منسوب</button>
+    </div>
+    <div id="foodList" class="food-list"></div>
+    <p class="muted small">لا تُعامل كلمة «ممنوع» هنا كتوصية طبية. الهدف عرض ما تنقله بعض القوائم مع إبراز الحاجة إلى التحقق.</p>
+  </section>
+
+  <section id="meals" class="panel">
+    <h2>البرنامج الغذائي الأسبوعي</h2>
+    <div class="notice">
+      <strong>خطة متوازنة تجريبية</strong>
+      <p>تضم مصادر بروتين متنوعة وخضروات وفاكهة وحبوباً. ليست تطبيقاً حرفياً لقائمة الممنوعات في نظام الطيبات.</p>
+    </div>
+    <label class="field-label" for="daySelect">اختر اليوم</label>
+    <select id="daySelect" class="field">
+      <option>السبت</option><option>الأحد</option><option>الاثنين</option><option>الثلاثاء</option><option>الأربعاء</option><option>الخميس</option><option>الجمعة</option>
+    </select>
+    <div id="mealCards" class="meal-list"></div>
+  </section>
+
+  <section id="progress" class="panel">
+    <h2>متابعة الوزن والتقدم</h2>
+    <div class="card">
+      <label class="field-label" for="weightInput">الوزن الحالي (كجم)</label>
+      <div class="inline-form"><input id="weightInput" class="field" type="number" min="30" max="300" step="0.1" placeholder="مثلاً 94.5"><button id="saveWeight" class="primary">تسجيل</button></div>
+      <p class="muted small">يفضل القياس في وقت وظروف متشابهة، مرة أو مرتين أسبوعياً.</p>
+      <div id="weightHistory" class="history"></div>
+    </div>
+    <div class="card">
+      <label class="field-label" for="notes">ملاحظاتك اليومية</label>
+      <textarea id="notes" class="field" rows="4" placeholder="النوم، الجوع، النشاط، ملاحظاتك..."></textarea>
+      <button id="saveNotes" class="secondary">حفظ الملاحظات</button>
+    </div>
+    <div class="card">
+      <h3>بياناتك ونسختك الاحتياطية</h3>
+      <p class="muted small">البيانات محفوظة على هذا الجهاز والمتصفح. استخدم التصدير للاحتفاظ بنسخة احتياطية أو نقلها.</p>
+      <div class="actions">
+        <button id="exportData" class="secondary">تصدير نسخة JSON</button>
+        <button id="printReport" class="secondary">طباعة / حفظ PDF</button>
+        <label class="secondary import-label">استيراد نسخة JSON<input id="importData" type="file" accept="application/json" hidden></label>
+      </div>
+      <p id="backupStatus" class="muted small" aria-live="polite"></p>
+    </div>
+  </section>
+</main>
+
+<footer><p>الطيبات · Tayyibat Life</p><small>نسخة تجريبية شخصية تعمل دون اتصال بعد تثبيتها. التصنيفات الغذائية تحتاج مراجعة مرجعية وطبية.</small></footer>
+<script src="app.js"></script>
+</body>
+</html>
